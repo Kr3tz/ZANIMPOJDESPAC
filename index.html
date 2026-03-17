@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>POWIEDZ JAK — PREORDER</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+background:#0b0b0b;
+color:#f5f5f5;
+font-family:"Helvetica Neue",Arial,sans-serif;
+line-height:1.6;
+letter-spacing:.5px;
+overflow-x:hidden;
+}
+
+/* Cursor glow */
+.cursor-glow{
+position:fixed;
+width:250px;
+height:250px;
+background:radial-gradient(circle,rgba(255,255,255,0.06)0%,rgba(255,255,255,0.03)40%,transparent 70%);
+border-radius:50%;
+pointer-events:none;
+transform:translate(-50%,-50%);
+mix-blend-mode:lighten;
+z-index:9999;
+}
+
+nav{
+position:fixed;
+top:30px;
+right:10%;
+font-size:13px;
+letter-spacing:1px;
+}
+nav a{color:#777;text-decoration:none;margin-left:25px;transition:.3s}
+nav a:hover{color:#fff}
+
+header{padding:120px 10% 80px;border-bottom:1px solid #1a1a1a}
+h1{font-size:72px;margin-bottom:20px}
+h2{font-size:22px;margin-bottom:40px;color:#ccc}
+section{padding:120px 10%;border-bottom:1px solid #141414}
+
+/* Booklet */
+.book{max-width:700px;position:relative;min-height:260px}
+.page{display:none;animation:fade .4s ease}
+.page.active{display:block}
+.page-content{color:#aaa;white-space:pre-line}
+
+.controls{margin-top:40px;display:flex;gap:20px}
+.control-btn{
+padding:8px 20px;
+border:1px solid #f5f5f5;
+background:none;
+color:#f5f5f5;
+cursor:pointer;
+transition:.3s;
+}
+.control-btn:hover{background:#f5f5f5;color:#0b0b0b}
+
+/* PREORDER */
+.preorder-box{
+max-width:520px;
+margin:auto;
+padding:40px;
+border:1px solid #1c1c1c;
+background:linear-gradient(145deg,#0e0e0e,#090909);
+box-shadow:0 0 40px rgba(0,0,0,.6);
+}
+
+.stock{
+text-align:center;
+font-size:14px;
+letter-spacing:2px;
+color:#aaa;
+margin-bottom:15px;
+}
+
+.price{
+text-align:center;
+font-size:36px;
+letter-spacing:4px;
+margin-bottom:25px;
+}
+
+.form-field{
+width:100%;
+padding:14px;
+margin-bottom:15px;
+background:#0b0b0b;
+border:1px solid #222;
+color:#eee;
+}
+
+.buy-button{
+display:inline-block;
+width:100%;
+padding:14px 26px;
+border:1px solid #f5f5f5;
+background:#f5f5f5;
+color:#0b0b0b;
+text-decoration:none;
+margin-top:10px;
+transition:.3s;
+font-weight:bold;
+letter-spacing:2px;
+cursor:pointer;
+}
+.buy-button:hover{background:#ffffff}
+.buy-button:disabled{opacity:.4;cursor:not-allowed}
+
+.note{font-size:12px;color:#777;margin-top:15px;text-align:center}
+
+footer{padding:60px 10%;font-size:11px;color:#555;text-align:center}
+
+.fade-in{opacity:0;transform:translateY(30px);transition:all .8s ease}
+.fade-in.visible{opacity:1;transform:none}
+
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+@media(max-width:768px){
+h1{font-size:42px}
+nav{position:static;margin-bottom:40px}
+.cursor-glow{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<nav>
+<a href="#manifest">Info</a>
+<a href="#booklet">Booklet</a>
+<a href="#kup">Pre-Order</a>
+</nav>
+
+<header class="fade-in">
+<h1>POWIEDZ JAK</h1>
+<p>Limitowana edycja fizyczna albumu.</p>
+</header>
+
+<section id="manifest" class="fade-in">
+<h2>Info</h2>
+<p>
+Debiutancki fizyczny nakład albumu Kr3tz.
+Ręcznie numerowane egzemplarze w edycji kolekcjonerskiej.
+</p>
+</section>
+
+<section id="booklet" class="fade-in">
+<h2>Booklet</h2>
+
+<div class="book" id="book">
+
+<div class="page active"><div class="page-content">01 — POWIEDZ JAK
+
+Tekst utworu 1</div></div>
+<div class="page"><div class="page-content">02 — TYTUŁ
+
+Tekst utworu 2</div></div>
+<div class="page"><div class="page-content">03 — TYTUŁ
+
+Tekst utworu 3</div></div>
+<div class="page"><div class="page-content">04 — TYTUŁ
+
+Tekst utworu 4</div></div>
+<div class="page"><div class="page-content">05 — TYTUŁ
+
+Tekst utworu 5</div></div>
+<div class="page"><div class="page-content">06 — TYTUŁ
+
+Tekst utworu 6</div></div>
+<div class="page"><div class="page-content">07 — TYTUŁ
+
+Tekst utworu 7</div></div>
+<div class="page"><div class="page-content">08 — TYTUŁ
+
+Tekst utworu 8</div></div>
+<div class="page"><div class="page-content">09 — TYTUŁ
+
+Tekst utworu 9</div></div>
+<div class="page"><div class="page-content">10 — TYTUŁ
+
+Tekst utworu 10</div></div>
+
+</div>
+
+<div class="controls">
+<button class="control-btn" onclick="prevPage()">Poprzednia</button>
+<button class="control-btn" onclick="nextPage()">Następna</button>
+</div>
+
+</section>
+
+<section id="kup" class="fade-in">
+<h2>Pre-Order — Kopia fizyczna</h2>
+
+<div class="preorder-box">
+<div class="stock">Dostępne egzemplarze: <strong id="stockCount">6</strong> / 6</div>
+<div class="price">6,66 PLN</div>
+
+<!-- FORMSUBMIT — działa bez backendu -->
+<form id="orderForm" action="https://formsubmit.co/kr3tzkontakt@gmail.com" method="POST">
+
+<input class="form-field" type="text" name="Imię i nazwisko" placeholder="Imię i nazwisko" required>
+<input class="form-field" type="email" name="Email" placeholder="Email kontaktowy" required>
+<input class="form-field" type="text" name="Adres" placeholder="Adres do wysyłki" required>
+
+<input type="hidden" name="_subject" value="Nowe zamówienie PRE-ORDER">
+<input type="hidden" name="_captcha" value="false">
+
+<button type="submit" class="buy-button" id="buyBtn">Kup Pre-Order</button>
+</form>
+
+<p class="note">Po opłaceniu zamówienia otrzymasz mail zwrotny z potwierdzeniem.</p>
+</div>
+</section>
+
+<footer>
+© 2026 KR3TZ — Album XYZ
+</footer>
+
+<script>
+/* Cursor glow */
+const glow=document.getElementById('cursorGlow');
+document.addEventListener('mousemove',(e)=>{
+glow.style.left=e.clientX+'px';
+glow.style.top=e.clientY+'px';
+});
+
+/* Booklet */
+let currentPage=0;
+const pages=document.querySelectorAll('.page');
+function showPage(index){pages.forEach(p=>p.classList.remove('active'));pages[index].classList.add('active')}
+function nextPage(){if(currentPage<pages.length-1){currentPage++;showPage(currentPage)}}
+function prevPage(){if(currentPage>0){currentPage--;showPage(currentPage)}}
+
+/* Stock system */
+let stock=localStorage.getItem('stock')||6;
+stock=parseInt(stock);
+const stockEl=document.getElementById('stockCount');
+const form=document.getElementById('orderForm');
+const btn=document.getElementById('buyBtn');
+
+function updateStock(){
+stockEl.textContent=stock;
+if(stock<=0){
+btn.disabled=true;
+btn.textContent="WYPRZEDANE";
+}
+}
+updateStock();
+
+form.addEventListener('submit',()=>{
+if(stock>0){
+stock--;
+localStorage.setItem('stock',stock);
+}
+});
+
+/* Scroll animations */
+const faders=document.querySelectorAll('.fade-in');
+const appearOptions={threshold:0.2};
+const appearOnScroll=new IntersectionObserver(function(entries,observer){
+entries.forEach(entry=>{
+if(!entry.isIntersecting)return;
+entry.target.classList.add('visible');
+observer.unobserve(entry.target);
+});
+},appearOptions);
+faders.forEach(fader=>appearOnScroll.observe(fader));
+</script>
+
+</body>
+</html>

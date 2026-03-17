@@ -1,0 +1,278 @@
+/* ===== RESET ===== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Arial, sans-serif;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #020202;
+  color: #e8e8e8;
+  overflow-x: hidden;
+}
+
+/* ===== TŁO Z OCZAMI — WERSJA PEWNA ===== */
+
+body {
+  background-color: #000;
+}
+
+/* warstwa z oczami */
+.eyes-bg {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+
+  background-image: url("./oko.png"); /* ← ścieżka */
+  background-repeat: repeat;
+  background-size: 260px;
+
+  /* 👉 TUTAJ ZMIENIASZ PRZEZROCZYSTOŚĆ */
+  opacity: 0.08;
+
+  z-index: -1;
+  pointer-events: none;
+}
+
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at center, transparent 20%, #000 90%);
+  z-index: -1;
+}
+
+/* ===== INTRO ===== */
+
+.intro {
+  height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.intro-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+}
+
+.intro-content {
+  position: relative;
+  max-width: 600px;
+  padding: 60px;
+  border: 1px solid #111;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(8px);
+}
+
+.intro h1 {
+  font-size: 52px;
+  letter-spacing: 8px;
+  margin-bottom: 20px;
+}
+
+.intro p {
+  color: #888;
+  margin-bottom: 35px;
+  line-height: 1.6;
+}
+
+/* ===== BUTTON ===== */
+
+.btn {
+  display: inline-block;
+  padding: 14px 30px;
+  border: 1px solid #222;
+  background: #0c0c0c;
+  color: #eee;
+  text-decoration: none;
+  letter-spacing: 1px;
+  transition: 0.25s;
+}
+
+.btn:hover {
+  background: #1a1a1a;
+  transform: translateY(-2px);
+}
+
+/* ===== APP ===== */
+
+.app input {
+  display: none;
+}
+
+header {
+  text-align: center;
+  padding: 70px 20px;
+  border-bottom: 1px solid #111;
+  background: rgba(0,0,0,0.7);
+}
+
+.logo {
+  font-size: 38px;
+  letter-spacing: 6px;
+}
+
+nav {
+  margin-top: 25px;
+}
+
+nav label {
+  margin: 0 20px;
+  color: #666;
+  cursor: pointer;
+  letter-spacing: 2px;
+  transition: 0.2s;
+}
+
+nav label:hover {
+  color: #fff;
+}
+
+/* ===== PANELS ===== */
+
+.panels {
+  position: relative;
+  min-height: 70vh;
+}
+
+.panel {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+  padding: 40px 20px;
+}
+
+.panel-inner {
+  max-width: 700px;
+  text-align: center;
+}
+
+.box {
+  border: 1px solid #111;
+  padding: 60px;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(6px);
+}
+
+.panel h2 {
+  font-size: 32px;
+  letter-spacing: 4px;
+  margin-bottom: 20px;
+}
+
+.panel p {
+  color: #888;
+  line-height: 1.7;
+  margin-bottom: 15px;
+}
+
+.whisper {
+  color: #555;
+  font-style: italic;
+}
+
+/* aktywne panele */
+
+#t1:checked ~ .panels .panel:nth-child(1),
+#t2:checked ~ .panels .panel:nth-child(2),
+#t3:checked ~ .panels .panel:nth-child(3) {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ===== FOOTER ===== */
+
+footer {
+  text-align: center;
+  padding: 50px;
+  font-size: 12px;
+  color: #444;
+  border-top: 1px solid #111;
+}
+/* ===== TEASER ===== */
+
+.teaser-frame {
+  width: 100%;
+  height: 220px;
+  border: none;
+  margin-top: 15px;
+}
+
+/* ===== KSIĄŻKA — ROZKŁADÓWKI ===== */
+
+.book {
+  max-width: 900px;
+  margin: auto;
+}
+
+.book-spreads {
+  position: relative;
+  margin: 20px 0;
+}
+
+/* ukrywamy wszystkie rozkładówki */
+.spread {
+  display: none;
+  gap: 0;
+}
+
+/* pokazujemy aktywną */
+#s1:checked ~ .book-spreads .spread:nth-child(1),
+#s2:checked ~ .book-spreads .spread:nth-child(2) {
+  display: flex;
+}
+
+/* strony książki */
+
+.page {
+  width: 50%;
+  min-height: 300px;
+  padding: 25px;
+  background: #0b0b0b;
+  border: 1px solid #222;
+  overflow-y: auto;
+}
+
+/* efekt środka książki */
+
+.page.left {
+  border-right: none;
+}
+
+.page.right {
+  border-left: 1px solid #111;
+  background: #080808;
+}
+
+/* nawigacja */
+
+.book-nav {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.book-nav label {
+  cursor: pointer;
+  margin: 0 5px;
+  padding: 6px 12px;
+  border: 1px solid #333;
+  font-size: 14px;
+}
+
+.book-nav label:hover {
+  border-color: #777;
+}
